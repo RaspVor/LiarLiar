@@ -1,8 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 25 23:33:11 2019
+#Functions
 
-@author: neuro
-"""
+class Player:
+  def __init__(self, name):
+    self.name = name
 
+  def myname(self):
+    print("Hello my name is " + self.name)
 
+p1=Player("Francois")
+p1.myname()
