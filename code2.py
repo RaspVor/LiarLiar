@@ -4,10 +4,8 @@ exec(open("./functions.py").read())
 
 #Who is playing?
 nb_players = nb_players(3)
-nb_players.hmp()
 
-
-p1=Player("Francois", "Human", 1)
+p1=Player("FrancoisBot", "Bot", 1)
 p2=Player("Neuromancer", "Bot", 2)
 p3=Player("Shooter", "Bot", 3)
 
@@ -26,15 +24,18 @@ if len(deck.cards_list) % nb_players.nb != 0:
     last_cards = deck.cards_list[-1]
     deck.cards_list = deck.cards_list[:-1]
 
+
+
 #Distribution of the cards
+nb_players.hmp()
+    
 for i in Player.players_list:
     i.myname()
     
     if i.player_number < nb_players.nb:
         i.cards = deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number-1]
-        print(i.cards)
     else:
-        i.cards = deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number-1]
-        print(i.cards)
+        i.cards = np.append(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number-1],last_cards)
+
         
         
