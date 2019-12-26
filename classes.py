@@ -38,9 +38,11 @@ class cards_game:
                                               "Bahamut","Bahamut","Bahamut","Bahamut","Bahamut","Bahamut","Bahamut","Bahamut",
                                               "Leviathan","Leviathan","Leviathan","Leviathan","Leviathan","Leviathan","Leviathan","Leviathan",
                                               "Golgotha","Golgotha","Golgotha","Golgotha","Golgotha","Golgotha","Golgotha","Golgotha",
-                                              "Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus"])
+                                              "Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus"]),
+                       last_cards=np.array([])
                  ):
         self.cards_list = cards_list
+        self.last_cards = last_cards
         
         
         
