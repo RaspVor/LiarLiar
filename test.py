@@ -1,4 +1,4 @@
 exec(open("./requirements.py").read())
-
-deck = np.array([1,2,3,4,5,6])
-print(len(deck))
+exec(open("./classes.py").read())
+exec(open("./functions.py").read())
+exec(open("./1_Preparation.py").read())
