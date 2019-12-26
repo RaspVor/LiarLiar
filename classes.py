@@ -1,7 +1,7 @@
 #Class
 
 class nb_players:
-    def __init__(self,nb):
+    def __init__(self, nb=1):
         self.nb=nb
         
     def hmp(self):
