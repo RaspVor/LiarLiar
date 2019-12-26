@@ -41,3 +41,9 @@ class cards_game:
                                               "Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus","Taurus"])
                  ):
         self.cards_list = cards_list
+        
+        
+        
+class game_turn:
+    def __init__(self,num = 0):
+        self.num=num
