@@ -7,7 +7,6 @@ for i in range(nb_players.nb):
 
 
 
-
 #Shuffling the cards
 deck = cards_game()
 
@@ -16,9 +15,8 @@ if nb_players.nb == 2:
 else:
     deck.cards_list = shuffle_deck(deck.cards_list)
 
-last_cards=np.array([])
 if len(deck.cards_list) % nb_players.nb != 0:
-    last_cards = deck.cards_list[-1]
+    deck.last_cards = deck.cards_list[-1]
     deck.cards_list = deck.cards_list[:-1]
 
 
@@ -32,7 +30,7 @@ for i in Player.players_list:
     if i.player_number < nb_players.nb:
         i.cards = deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number]
     else:
-        i.cards = np.append(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number],last_cards)
+        i.cards = np.append(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number],deck.last_cards)
 
-        
+    print(i.cards)
         
