@@ -46,6 +46,9 @@ class cards_game:
         
         
         
-class game_turn:
-    def __init__(self,num = 0):
+class game_turn_nb:
+    def __init__(self,num = 1):
         self.num=num
+        
+    def which_turn(self):
+        print("It's turn number " + str(self.num) + "!")
