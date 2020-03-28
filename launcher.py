@@ -3,5 +3,3 @@ exec(open("./classes.py").read())
 exec(open("./functions.py").read())
 exec(open("./1_Preparation.py").read())
 
-
-Player.players_list[0].myname()
