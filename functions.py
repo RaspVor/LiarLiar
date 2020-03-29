@@ -14,7 +14,7 @@ def HowManyPlayers():
                 [sg.Button('Ok'), sg.Button('Cancel')] ]
 
     # Create the Window
-    window = sg.Window('Introduce yourself!', layout)
+    window = sg.Window('Summoners! Rise Up', layout)
     # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()
