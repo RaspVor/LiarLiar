@@ -34,3 +34,7 @@ for i in Player.players_list:
 
     print(i.cards)
         
+
+#Choose who start
+dice = dice(0,Player.players_list)
+dice.who_start()
