@@ -44,7 +44,16 @@ class cards_game:
         self.cards_list = cards_list
         self.last_cards = last_cards
         
+
+class dice:
+    def __init__(self,winner = 0, players_list=()):
+        self.winner = winner
+        self.players_list = players_list
         
+    def who_start(self):
+        self.winner = random.randint(1, len(Player.players_list))
+        
+    def tell_who_start
         
 class game_turn_nb:
     def __init__(self,num = 1):
