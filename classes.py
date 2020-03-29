@@ -46,18 +46,21 @@ class cards_game:
         
 
 class dice:
-    def __init__(self,winner = 0, players_list=()):
+    def __init__(self, winner = 0, players_list = []):
         self.winner = winner
         self.players_list = players_list
-        
+    
+    def random_choose(self):
+        self.winner = random.randint(1,len(self.players_list))-1
+    
     def who_start(self):
-        self.winner = random.randint(1, len(Player.players_list))
-        
-    def tell_who_start
+        print(str(self.players_list[self.winner].name) + " starts !")
         
 class game_turn_nb:
-    def __init__(self,num = 1):
-        self.num=num
-        
+    def __init__(self,num = 1, first = 0, players_list = []):
+        self.num = num
+        self.first = first
+        self.players_list = players_list
+    
     def which_turn(self):
-        print("It's turn number " + str(self.num) + "!")
+        print("It's turn number " + str(self.num) + "! " + str(self.players_list[self.first].name) + " starts !")
