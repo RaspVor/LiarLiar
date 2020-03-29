@@ -56,11 +56,12 @@ class dice:
     def who_start(self):
         print(str(self.players_list[self.winner].name) + " starts !")
         
-class game_turn_nb:
-    def __init__(self,num = 1, first = 0, players_list = []):
-        self.num = num
+class game_turn:
+    def __init__(self,turn_num = 1, first = 0, players_list = [], winner = 0):
+        self.turn_num = turn_num
         self.first = first
         self.players_list = players_list
+        self.winner = winner
     
     def which_turn(self):
-        print("It's turn number " + str(self.num) + "! " + str(self.players_list[self.first].name) + " starts !")
+        print("It's turn number " + str(self.turn_num) + "! " + str(self.players_list[self.first].name) + " starts !")
