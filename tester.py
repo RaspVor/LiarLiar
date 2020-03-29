@@ -26,5 +26,5 @@ class game_turn_nb:
     def which_turn(self):
         print("It's turn number " + str(self.num) + "!")
         
-game_turn_nb = game_turn_nb()        
+game_turn_nb = game_turn_nb(1,dice.winner,Player.players_list)  
 game_turn_nb.which_turn()
