@@ -83,4 +83,3 @@ def one_turn(turn_number, past_winner):
     
     window.close()
     
-one_turn(counter_turnZ.counter, counter_turnZ.winner)
