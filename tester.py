@@ -136,9 +136,55 @@ who_wonZ4.tellwhowon()
 
 column_names = ["turn", "picker_number", "caller_number", "picker_cards", "picker_call", "caller_choose", "winner"]
 myMatrix = pd.DataFrame(columns = column_names)
-myMatrix_temp = pd.DataFrame([[game_turnZ.turn_num,dice.winner,(dice.winner+1)%len(Player.players_list),"Leviathan", "Shiva","TRUE",who_wonZ1.return_winner()]],columns = column_names)
+myMatrix_temp = pd.DataFrame([[turn_startZ.turn_num,dice.winner,(dice.winner+1)%len(Player.players_list),"Leviathan", "Shiva","TRUE",who_wonZ1.return_winner()]],columns = column_names)
 
 myMatrix = myMatrix.append(myMatrix_temp, ignore_index=True)   
+
+topage_cards = np.where(Player.players_list[0].cards[0] == 'Ondine')[0][0]
+topage_cave = np.where(Player.players_list[0].cave[0] == 'Ondine')[0][0]
+
+topage_cards
+topage_cave
+
+print(Player.players_list[0].cards)
+print(Player.players_list[0].cave)
+
+Player.players_list[0].cards[1][Player.players_list[0].cards[1][topage_cards]] = Player.players_list[0].cards[1][Player.players_list[0].cards[1][topage_cards]] -1
+Player.players_list[0].cave[1][Player.players_list[0].cave[1][topage_cave]] = Player.players_list[0].cave[1][Player.players_list[0].cave[1][topage_cave]] + 1
+
+print(Player.players_list[0].cards)
+print(Player.players_list[0].cave)
+
+
+
+animals = Player.players_list[0].cards
+animals[0]
+
+
+
+print(Player.players_list[1].cards)
+
+
+topage = np.where(Player.players_list[0].cards[0] == 'Ondine')[0][0]
+topage
+
+Player.players_list[0].cards[1][Player.players_list[0].cards[1][topage]] = Player.players_list[0].cards[1][Player.players_list[0].cards[1][topage]] -1
+
+
+print(Player.players_list[0].cards)
+
+
+
+cavernZ = (np.array(['Ahuri', 'Bahamut', 'Golgotha', 'Ifrit', 'Leviathan', 'Ondine', 'Shiva', 'Taurus'], dtype='<U9'), np.array([0, 0, 0, 0, 0, 0, 0, 0], dtype='int64'))
+
+cavernZ[0]
+
+print('Updated animals list: ', animals)
+
+z = np.unique(Player.players_list[0].cards, return_counts=True)
+z
+y = np.array(['Ahuri', 'Bahamut',  'Ondine', 'Shiva', 'Taurus'], dtype='<U9')
+np.where(y == 'Ondine')[0][0]
 
 
 class turn_results:
