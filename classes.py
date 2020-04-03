@@ -125,6 +125,12 @@ class who_won:
             return (self.player_number+1)%len(Player.players_list)
         else:
             return (self.player_number)
+        
+    def return_loser(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            return (self.player_number)
+        else:
+            return (self.player_number+1)%len(Player.players_list)
 
     def tellwhowon(self):
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
