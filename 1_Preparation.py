@@ -43,6 +43,9 @@ dice.who_start()
 #Initialize Counter
 counter_turnZ = counter_turn(1, dice.winner)
 
+#initialize Data Save
+column_names = ["turn", "picker_number", "caller_number", "picker_cards", "picker_call", "caller_choose", "winner", "loser"]
+myMatrix = pd.DataFrame(columns = column_names)
 
 #THE GAME
 turn_startZ = turn_start(1,counter_turnZ.winner,Player.players_list)  
@@ -74,6 +77,26 @@ turn_callerZ = turn_caller((counter_turnZ.winner+1)%len(Player.players_list),Pla
 turn_callerZ.turn_caller_call()    
     
 
-##wicher
+##winner
 who_wonZ = who_won(counter_turnZ.winner,Player.players_list,card_picked, card_announced,choice_made) 
 who_wonZ.tellwhowon()    
+
+
+##players Update
+topage_cards = np.where(Player.players_list[counter_turnZ.winner].cards[0] == card_picked)[0][0]
+topage_cave = np.where(Player.players_list[who_wonZ.return_loser()].cave[0] == card_picked)[0][0]
+
+Player.players_list[counter_turnZ.winner].cards[1][Player.players_list[counter_turnZ.winner].cards[1][topage_cards]] = Player.players_list[counter_turnZ.winner].cards[1][Player.players_list[counter_turnZ.winner].cards[1][topage_cards]] -1
+Player.players_list[who_wonZ.return_loser()].cave[1][Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave]] = Player.players_list[who_wonZ.return_loser()].cave[1][Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave]] + 1
+
+
+
+##Data Update
+myMatrix_temp = pd.DataFrame([[turn_startZ.turn_num,counter_turnZ.winner,(counter_turnZ.winner+1)%len(Player.players_list),card_picked, card_announced,choice_made,who_wonZ.return_winner(), who_wonZ.return_loser()]],columns = column_names)
+myMatrix = myMatrix.append(myMatrix_temp, ignore_index=True)   
+
+
+
+
+##Next Turn
+counter_turnZ = counter_turn(counter_turnZ.counter+1, who_wonZ.return_loser())
