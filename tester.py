@@ -60,8 +60,8 @@ class turn_start:
         print("It's turn number " + str(self.turn_num) + "! " + str(self.players_list[self.player_number].name) + " starts !")
 
 #tour 1
-turn_start = turn_start(1,dice.winner,Player.players_list)  
-turn_start.which_turn()
+turn_startZ = turn_start(1,dice.winner,Player.players_list)  
+turn_startZ.which_turn()
 
 
 class turn_picker:
@@ -75,8 +75,8 @@ class turn_picker:
         print("Me! Summoner " + str(self.players_list[self.player_number].name) + "! I call " + str(self.picker_call) + "!")
 
 #tour 1
-turn_picker = turn_picker(dice.winner,Player.players_list, "Leviathan", "Shiva")  
-turn_picker.turn_picker_call()
+turn_pickerZ = turn_picker(dice.winner,Player.players_list, "Leviathan", "Shiva")  
+turn_pickerZ.turn_picker_call()
 
 
 class turn_caller:
@@ -92,10 +92,49 @@ class turn_caller:
             print("Me! Summoner " + str(self.players_list[self.player_number].name) + "! You are a LIAARRRRR!")
 
 #tour 1
-turn_callerZ = turn_caller(dice.winner,Player.players_list, "TRUE")  
+turn_callerZ = turn_caller((dice.winner+1)%len(Player.players_list),Player.players_list, "TRUE")  
 turn_callerZ.turn_caller_call()
-turn_callerZ = turn_caller(dice.winner,Player.players_list, "FALSE")  
+turn_callerZ = turn_caller((dice.winner+1)%len(Player.players_list),Player.players_list, "FALSE")  
 turn_callerZ.turn_caller_call()
+
+
+class who_won:
+    def __init__(self, player_number = 0, players_list = [], picker_cards = "ERROR", picker_call = "ERROR", caller_choose = "ERROR"):
+        self.player_number = player_number
+        self.players_list = players_list
+        self.picker_cards = picker_cards
+        self.picker_call = picker_call
+        self.caller_choose = caller_choose
+
+
+    def return_winner(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            return (self.player_number+1)%len(Player.players_list)
+        else:
+            return (self.player_number)
+
+    def tellwhowon(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            print(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
+        else:
+            print(str(self.players_list[self.player_number].name) + " WON!!!")
+
+#tour 1
+who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","TRUE") 
+who_wonZ.tellwhowon()
+
+who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","FALSE") 
+who_wonZ.tellwhowon()
+
+who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","TRUE") 
+who_wonZ.tellwhowon()
+
+who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","FALSE") 
+who_wonZ.tellwhowon()
+
+
+
+
 
 
 column_names = ["turn", "picker_name", "picker_cards", "picker_call", "caller_name", "caller_choose", "winner"]
@@ -103,3 +142,5 @@ df = pd.DataFrame(columns = column_names)
 
 df = pd.DataFrame([[1,2,3,4,5,6,7]],columns = column_names)
 df.head()
+
+len(Player.players_list)
