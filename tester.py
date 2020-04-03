@@ -220,3 +220,82 @@ df = pd.DataFrame([[1,2,3,4,5,6,7]],columns = column_names)
 df.head()
 
 len(Player.players_list)
+
+z = deck.cards_list[:len(deck.cards_list)//nb_players.nb*nb_players.nb].reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)
+z.shape
+
+z[:,0].shape
+z[:,1].shape
+z[:,2].shape
+
+
+
+def one_turn_human(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    radio_choices = Player.players_list[past_winner].cards[0]
+    
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( Player.players_list[past_winner].name + ' makes a call. Choose a card !')],
+                [sg.Radio(text, 1) for text in radio_choices],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+            
+            print(values)
+            card_played_indZ = list(values.values()).index(True)
+            print(card_played_indZ)
+            card_playedZ = radio_choices[card_played_indZ]
+            print(card_playedZ)
+            break
+    
+    window.close()
+    
+    return(card_playedZ)
+
+
+class card_played:
+    def __init__(self, card = "ERROR"):
+        self.card=card
+
+one_turn_human(counter_turnZ.counter, counter_turnZ.winner)
+
+ZZ = one_turn_human(counter_turnZ.counter, counter_turnZ.winner)
+ZZ
+
+
+zz = {0: False, 1: False, 2: True, 3: False, 4: False, 5: False, 6: False, 7: False}
+card_played_ind = list(zz.values()).index(True)
+list(zz.values())[card_played_ind]
+
+
+radio_choices = Player.players_list[counter_turnZ.winner].cards[0][3]
+
+
+
+
+{x: zz for x in (True)}
+zz[2]
+zz.index(True)
+
+l=[]
+[l.extend([k,v]) for k,v in zz]
+
+zz.values()
+
+people = [
+{'name': "Tom", 'age': 10},
+{'name': "Mark", 'age': 5},
+{'name': "Pam", 'age': 7}
+]
+
+list(filter(lambda x: x == True, zz))
