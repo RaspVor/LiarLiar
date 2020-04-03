@@ -29,11 +29,15 @@ for i in Player.players_list:
     
     if i.player_number < nb_players.nb:
         i.cards = np.unique(list(np.sort(deck.cards_list[:len(deck.cards_list)//nb_players.nb*nb_players.nb].reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number])), return_counts=True)
+        i.cave = (np.array(['Ahuri', 'Bahamut', 'Golgotha', 'Ifrit', 'Leviathan', 'Ondine', 
+                            'Shiva', 'Taurus'], dtype='<U9'), np.array([0, 0, 0, 0, 0, 0, 0, 0], dtype='int64'))
     else:
         i.cards = np.unique(list(np.sort(np.append(deck.cards_list[:len(deck.cards_list)//nb_players.nb*nb_players.nb].reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number],deck.last_cards))), return_counts=True)
-
-    print(i.cards)
+        i.cave = (np.array(['Ahuri', 'Bahamut', 'Golgotha', 'Ifrit', 'Leviathan', 'Ondine', 
+                            'Shiva', 'Taurus'], dtype='<U9'), np.array([0, 0, 0, 0, 0, 0, 0, 0], dtype='int64'))
         
+    print(i.cards)
+    print(i.cave)   
 
 #Choose who start
 dice = dice(0,Player.players_list)
@@ -86,17 +90,19 @@ who_wonZ.tellwhowon()
 topage_cards = np.where(Player.players_list[counter_turnZ.winner].cards[0] == card_picked)[0][0]
 topage_cave = np.where(Player.players_list[who_wonZ.return_loser()].cave[0] == card_picked)[0][0]
 
-Player.players_list[counter_turnZ.winner].cards[1][Player.players_list[counter_turnZ.winner].cards[1][topage_cards]] = Player.players_list[counter_turnZ.winner].cards[1][Player.players_list[counter_turnZ.winner].cards[1][topage_cards]] -1
-Player.players_list[who_wonZ.return_loser()].cave[1][Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave]] = Player.players_list[who_wonZ.return_loser()].cave[1][Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave]] + 1
+Player.players_list[counter_turnZ.winner].cards[1][topage_cards] = Player.players_list[counter_turnZ.winner].cards[1][topage_cards] -1
+Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave] = Player.players_list[who_wonZ.return_loser()].cave[1][topage_cave] + 1
 
-
+for i in Player.players_list:
+    i.myname()
+    
+    print(i.cards)
+    print(i.cave)
 
 ##Data Update
 myMatrix_temp = pd.DataFrame([[turn_startZ.turn_num,counter_turnZ.winner,(counter_turnZ.winner+1)%len(Player.players_list),card_picked, card_announced,choice_made,who_wonZ.return_winner(), who_wonZ.return_loser()]],columns = column_names)
 myMatrix = myMatrix.append(myMatrix_temp, ignore_index=True)   
 
 
-
-
 ##Next Turn
-counter_turnZ = counter_turn(counter_turnZ.counter+1, who_wonZ.return_loser())
+#counter_turnZ = counter_turn(counter_turnZ.counter+1, who_wonZ.return_loser())
