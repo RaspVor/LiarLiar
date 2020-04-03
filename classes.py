@@ -43,6 +43,20 @@ class cards_game:
                  ):
         self.cards_list = cards_list
         self.last_cards = last_cards
+
+
+class card_played:
+    def __init__(self, card = "ERROR"):
+        self.card=card
+        
+class card_announced:
+    def __init__(self, card = "ERROR"):
+        self.card=card
+        
+class card_guessed:
+    def __init__(self, card = "ERROR"):
+        self.card=card
+
         
 
 class dice:
@@ -69,7 +83,7 @@ class turn_start:
         self.players_list = players_list
     
     def which_turn(self):
-        print("It's turn number " + str(self.turn_num) + "! " + str(self.players_list[self.player_number].name) + " starts !")
+        print("It's turn number " + str(self.turn_num) + "! " + str(self.players_list[self.player_number].name) + " plays !")
 
 
 class turn_picker:
