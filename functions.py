@@ -60,3 +60,27 @@ def WhoAreYou(num=int):
     window.close()
     
     Player(values[0], player_statut_official, num)
+    
+    
+def one_turn(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( Player.players_list[past_winner].name + ' makes a call !')],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+            
+            print("challengers will compete")
+            break
+    
+    window.close()
+    
+one_turn(counter_turnZ.counter, counter_turnZ.winner)
