@@ -230,15 +230,17 @@ z[:,2].shape
 
 
 
-def one_turn_human(turn_number, past_winner):
+
+
+def one_turn_human_guess(turn_number, after_winner):
     sg.ChangeLookAndFeel('DarkAmber')
     # All the stuff inside the window.
     
-    radio_choices = Player.players_list[past_winner].cards[0]
+    radio_choices = ["TRUE", "FALSE"]
     
     
     layout = [  [sg.Text('Round ' + str(turn_number))],
-                [sg.Text( Player.players_list[past_winner].name + ' makes a call. Choose a card !')],
+                [sg.Text( Player.players_list[after_winner].name + '. Make a choice!')],
                 [sg.Radio(text, 1) for text in radio_choices],
                 [sg.Button('Ok'), sg.Button('Cancel')] ]
 
@@ -251,11 +253,95 @@ def one_turn_human(turn_number, past_winner):
             break
         if event in ('Ok'):   # if user closes window or clicks cancel
             
-            print(values)
+            choice_indZ = list(values.values()).index(True)
+            choiceZ = radio_choices[choice_indZ]
+            
+            break
+    
+    window.close()
+    
+    return(choiceZ)
+
+
+def one_turn_IA_guess(turn_number, after_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    IAchoice =  np.random.choice(["TRUE", "FALSE"],1)[0]
+    
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( 'Me, ' + Player.players_list[after_winner].name + '! I say it is ' + IAchoice)],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+            
+            choiceZ = IAchoice
+            
+            break
+    
+    window.close()
+    
+    return(choiceZ)
+
+choice_made =one_turn_human_guess(counter_turnZ.counter, (counter_turnZ.winner+1)%len(Player.players_list))
+choice_made =one_turn_IA_guess(counter_turnZ.counter, (counter_turnZ.winner+1)%len(Player.players_list))
+
+
+(counter_turnZ.winner+1)%len(Player.players_list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+def one_turn_human_picked(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    radio_choices = Player.players_list[counter_turnZ.winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]]
+    
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( Player.players_list[past_winner].name + ' pick a card !')],
+                [sg.Radio(text, 1) for text in radio_choices],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+            
             card_played_indZ = list(values.values()).index(True)
-            print(card_played_indZ)
             card_playedZ = radio_choices[card_played_indZ]
-            print(card_playedZ)
+            
             break
     
     window.close()
@@ -263,14 +349,64 @@ def one_turn_human(turn_number, past_winner):
     return(card_playedZ)
 
 
-class card_played:
-    def __init__(self, card = "ERROR"):
-        self.card=card
 
-one_turn_human(counter_turnZ.counter, counter_turnZ.winner)
+def one_turn_IA_picked(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    IAchoice = np.random.choice(Player.players_list[counter_turnZ.winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]],1)[0]
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( 'Me, ' + Player.players_list[past_winner].name + '! I pick ' + IAchoice)],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
 
-ZZ = one_turn_human(counter_turnZ.counter, counter_turnZ.winner)
-ZZ
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+        
+            card_playedZ = IAchoice
+            break
+    
+    window.close()
+    
+    return(card_playedZ)
+
+
+card_played =one_turn_IA_picked(counter_turnZ.counter, counter_turnZ.winner)
+card_played =one_turn_human_picked(counter_turnZ.counter, counter_turnZ.winner)
+
+
+
+
+zz = Player.players_list[counter_turnZ.winner].cards[1]
+zz = np.array([1, 4, 2, 4, 3, 2, 0, 4], dtype='int64')
+aa = np.where(zz > 0 )[0]
+
+
+Player.players_list[counter_turnZ.winner].cards[0][aa]
+
+
+
+
+
+
+
+
+
+
+
+ np.random.choice(Player.players_list[counter_turnZ.winner].cards[0],1)[0]
+
+
+one_turn_IA_call(counter_turnZ.counter, counter_turnZ.winner)
+
+card_played =one_turn_IA_call(counter_turnZ.counter, counter_turnZ.winner)
+card_played =one_turn_human_call(counter_turnZ.counter, counter_turnZ.winner)
 
 
 zz = {0: False, 1: False, 2: True, 3: False, 4: False, 5: False, 6: False, 7: False}
@@ -299,3 +435,70 @@ people = [
 ]
 
 list(filter(lambda x: x == True, zz))
+
+
+
+
+
+
+
+    
+def one_turn_human_call(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    radio_choices = Player.players_list[past_winner].cards[0]
+    
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( Player.players_list[past_winner].name + ' makes a call. Choose a card !')],
+                [sg.Radio(text, 1) for text in radio_choices],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+            
+            card_played_indZ = list(values.values()).index(True)
+            card_playedZ = radio_choices[card_played_indZ]
+            
+            break
+    
+    window.close()
+    
+    return(card_playedZ)
+
+
+def one_turn_IA_call(turn_number, past_winner):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    IAchoice = np.random.choice(Player.players_list[past_winner].cards[0],1)[0]
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text( 'Me, ' + Player.players_list[past_winner].name + '! I summon ' + IAchoice)],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            break
+        if event in ('Ok'):   # if user closes window or clicks cancel
+        
+            card_playedZ = IAchoice
+            break
+    
+    window.close()
+    
+    return(card_playedZ)
+
+
+    
