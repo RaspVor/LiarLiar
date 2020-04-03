@@ -44,8 +44,8 @@ class game_turn:
   # def turn(self):
       
 #tour 1
-game_turn = game_turn(1,dice.winner,Player.players_list)  
-game_turn.which_turn()
+game_turnZ = game_turn(1,dice.winner,Player.players_list)  
+game_turnZ.which_turn()
 
 
 
@@ -120,24 +120,54 @@ class who_won:
             print(str(self.players_list[self.player_number].name) + " WON!!!")
 
 #tour 1
-who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","TRUE") 
-who_wonZ.tellwhowon()
+who_wonZ1 = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","TRUE") 
+who_wonZ1.tellwhowon()
 
-who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","FALSE") 
-who_wonZ.tellwhowon()
+who_wonZ2 = who_won(dice.winner,Player.players_list,"Leviathan", "Shiva","FALSE") 
+who_wonZ2.tellwhowon()
 
-who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","TRUE") 
-who_wonZ.tellwhowon()
+who_wonZ3 = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","TRUE") 
+who_wonZ3.tellwhowon()
 
-who_wonZ = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","FALSE") 
-who_wonZ.tellwhowon()
-
-
+who_wonZ4 = who_won(dice.winner,Player.players_list,"Leviathan", "Leviathan","FALSE") 
+who_wonZ4.tellwhowon()
 
 
 
+column_names = ["turn", "picker_number", "caller_number", "picker_cards", "picker_call", "caller_choose", "winner"]
+myMatrix = pd.DataFrame(columns = column_names)
+myMatrix_temp = pd.DataFrame([[game_turnZ.turn_num,dice.winner,(dice.winner+1)%len(Player.players_list),"Leviathan", "Shiva","TRUE",who_wonZ1.return_winner()]],columns = column_names)
 
-column_names = ["turn", "picker_name", "picker_cards", "picker_call", "caller_name", "caller_choose", "winner"]
+myMatrix = myMatrix.append(myMatrix_temp, ignore_index=True)   
+
+
+class turn_results:
+    myMatrix = pd.DataFrame(columns=["turn", "picker_number", "players_list", "picker_cards", "picker_call", "caller_choose", "winner"])
+    
+    def __init__(self,turn_num = 1, picker_number = 0, caller_number = 0, picker_cards = "ERROR", picker_call = "ERROR", caller_choose = "ERROR", winner = "ERROR"):
+        self.turn_num = turn_num
+        self.picker_number = picker_number
+        self.caller_number = caller_number
+        self.picker_cards = picker_cards
+        self.picker_call = picker_call
+        self.caller_choose = caller_choose
+        self.winner = winner
+        self.myMatrix.append(self, ignore_index=True)
+        
+    
+#tour 1   
+turn_resultsZ1 = turn_results(game_turnZ.turn_num,dice.winner,(dice.winner+1)%len(Player.players_list),"Leviathan", "Shiva","TRUE",who_wonZ1.return_winner())
+turn_resultsZ2 = turn_results(game_turnZ.turn_num,dice.winner,Player.players_list,"Leviathan", "Shiva","FALSE",who_wonZ2.return_winner())
+turn_resultsZ3 = turn_results(game_turnZ.turn_num,dice.winner,Player.players_list,"Leviathan", "Leviathan","TRUE",who_wonZ3.return_winner())
+turn_resultsZ4 = turn_results(game_turnZ.turn_num,dice.winner,Player.players_list,"Leviathan", "Leviathan","FALSE",who_wonZ4.return_winner())
+
+
+aaa = turn_resultsZ1.myMatrix
+
+game_turnZ.players_list
+
+
+column_names = ["turn", "picker_name", "picker_cards", "picker_call", "caller_name", "caller_choose", "winner",who_wonZ.return_winner()]
 df = pd.DataFrame(columns = column_names)
 
 df = pd.DataFrame([[1,2,3,4,5,6,7]],columns = column_names)
