@@ -12,7 +12,7 @@ class nb_players:
 class Player:
     players_list = []
     
-    def __init__(self, name = "Anonymous", IA = "Bot", player_number = int, cards = list(), cave = (np.array(['Ahuri', 'Bahamut', 'Golgotha', 'Ifrit', 'Leviathan', 'Ondine', 'Shiva', 'Taurus'], dtype='<U9'), np.array([0, 0, 0, 0, 0, 0, 0, 0], dtype='int64'))):
+    def __init__(self, name = "Anonymous", IA = "Bot", player_number = int, cards = list(), cave = list()):
         self.name = name
         self.IA = IA
         self.player_number = player_number
