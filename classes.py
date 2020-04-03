@@ -55,7 +55,12 @@ class dice:
     
     def who_start(self):
         print(str(self.players_list[self.winner].name) + " starts !")
-        
+
+
+class counter_turn:
+    def __init__(self, counter = 1, winner = 0):  
+        self.counter = counter
+        self.winner = winner
 
 class turn_start:
     def __init__(self,turn_num = 1, player_number = 0, players_list = []):
