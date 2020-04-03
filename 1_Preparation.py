@@ -28,9 +28,9 @@ for i in Player.players_list:
     i.myname()
     
     if i.player_number < nb_players.nb:
-        i.cards = np.sort(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number])
+        i.cards = np.unique(list(np.sort(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number])), return_counts=True)
     else:
-        i.cards = np.sort(np.append(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number],deck.last_cards))
+        i.cards = np.unique(list(np.sort(np.append(deck.cards_list.reshape(len(deck.cards_list)//nb_players.nb,nb_players.nb)[:,i.player_number],deck.last_cards))), return_counts=True)
 
     print(i.cards)
         
@@ -38,3 +38,6 @@ for i in Player.players_list:
 #Choose who start
 dice = dice(0,Player.players_list)
 dice.who_start()
+
+#Initialize Counter
+counter_turnZ = counter_turn(1, dice.winner)
