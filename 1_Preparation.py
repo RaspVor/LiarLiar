@@ -38,3 +38,6 @@ for i in Player.players_list:
 #Choose who start
 dice = dice(0,Player.players_list)
 dice.who_start()
+
+#Initialize Counter
+counter_turnZ = counter_turn(1, dice.winner)
