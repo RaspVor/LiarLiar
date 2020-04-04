@@ -45,16 +45,17 @@ dice.random_choose()
 dice.who_start()
 
 #Initialize Counter
-counter_turnZ = counter_turn(1, dice.winner)
+start_ind = 1
+counter_turnZ = counter_turn(start_ind, dice.winner)
 
 #initialize Data Save
 column_names = ["turn", "picker_number", "caller_number", "picker_cards", "picker_call", "caller_choose", "winner", "loser"]
 myMatrix = pd.DataFrame(columns = column_names)
 
-for i in range(1,10):
+while len(Player.players_list) > 1:
     
     #THE GAME
-    turn_startZ = turn_start(i,counter_turnZ.winner,Player.players_list)  
+    turn_startZ = turn_start(counter_turnZ.counter,counter_turnZ.winner,Player.players_list)  
     turn_startZ.which_turn()
     
     
@@ -101,6 +102,9 @@ for i in range(1,10):
         
         print(i.cards)
         print(i.cave)
+    
+    #Eliminate losers
+    ifloser_die(counter_turnZ.counter, who_wonZ.return_loser(), Player.players_list)
     
     ##Data Update
     myMatrix_temp = pd.DataFrame([[turn_startZ.turn_num,counter_turnZ.winner,(counter_turnZ.winner+1)%len(Player.players_list),card_picked, card_announced,choice_made,who_wonZ.return_winner(), who_wonZ.return_loser()]],columns = column_names)
