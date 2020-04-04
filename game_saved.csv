@@ -1,0 +1,5 @@
+turn,picker_number,picker_name,caller_number,caller_name,picker_cards,picker_call,caller_choose,winner,loser
+1,3,Robot3,4,Robot4,Bahamut,Taurus,FALSE,4,3
+2,3,Robot4,0,Francois,Shiva,Shiva,TRUE,0,3
+3,0,Francois,1,Robot1,Ifrit,Leviathan,TRUE,0,1
+4,0,Francois,1,Robot2,Golgotha,Ifrit,TRUE,0,1
