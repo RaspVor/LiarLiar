@@ -14,7 +14,7 @@ nb_players.hmp()
 
 
 
-
+myMatrix.head()
 
 
 nb_players.hmp()
