@@ -12,7 +12,7 @@ class nb_players:
 class Player:
     players_list = []
     
-    def __init__(self, name = "Anonymous", IA = "Bot", player_number = int, cards = list(), cave = (np.array(['Ahuri', 'Bahamut', 'Golgotha', 'Ifrit', 'Leviathan', 'Ondine', 'Shiva', 'Taurus'], dtype='<U9'), np.array([0, 0, 0, 0, 0, 0, 0, 0], dtype='int64'))):
+    def __init__(self, name = "Anonymous", IA = "Bot", player_number = int, cards = list(), cave = list()):
         self.name = name
         self.IA = IA
         self.player_number = player_number
@@ -125,9 +125,21 @@ class who_won:
             return (self.player_number+1)%len(Player.players_list)
         else:
             return (self.player_number)
+        
+    def return_loser(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            return (self.player_number)
+        else:
+            return (self.player_number+1)%len(Player.players_list)
 
     def tellwhowon(self):
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
             print(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
         else:
             print(str(self.players_list[self.player_number].name) + " WON!!!")
+
+    def showwhowon(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            return(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
+        else:
+            return(str(self.players_list[self.player_number].name) + " WON!!!")
