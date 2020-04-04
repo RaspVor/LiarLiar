@@ -1,8 +1,9 @@
 #Class
 
 class nb_players:
-    def __init__(self, nb=1):
+    def __init__(self, nb=1, listing = np.array([])):
         self.nb=nb
+        self.listing=listing
         
     def hmp(self):
         print("There are " + str(self.nb) + " players. Prepare for the battle!")
@@ -72,9 +73,10 @@ class dice:
 
 
 class counter_turn:
-    def __init__(self, counter = 1, winner = 0):  
+    def __init__(self, counter = 1, winner = 0, rival = 0):  
         self.counter = counter
         self.winner = winner
+        self.rival = rival
 
 class turn_start:
     def __init__(self,turn_num = 1, player_number = 0, players_list = []):
@@ -112,8 +114,9 @@ class turn_caller:
 
 
 class who_won:
-    def __init__(self, player_number = 0, players_list = [], picker_cards = "ERROR", picker_call = "ERROR", caller_choose = "ERROR"):
+    def __init__(self, player_number = 0, rival_number = 0, players_list = [], picker_cards = "ERROR", picker_call = "ERROR", caller_choose = "ERROR"):
         self.player_number = player_number
+        self.rival_number = rival_number
         self.players_list = players_list
         self.picker_cards = picker_cards
         self.picker_call = picker_call
@@ -122,7 +125,7 @@ class who_won:
 
     def return_winner(self):
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
-            return (self.player_number+1)%len(Player.players_list)
+            return (self.rival_number)
         else:
             return (self.player_number)
         
@@ -130,16 +133,16 @@ class who_won:
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
             return (self.player_number)
         else:
-            return (self.player_number+1)%len(Player.players_list)
+            return (self.rival_number)
 
     def tellwhowon(self):
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
-            print(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
+            print(str(self.players_list[self.rival_number].name) + " WON!!!")
         else:
             print(str(self.players_list[self.player_number].name) + " WON!!!")
 
     def showwhowon(self):
         if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
-            return(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
+            return(str(self.players_list[self.rival_number].name) + " WON!!!")
         else:
             return(str(self.players_list[self.player_number].name) + " WON!!!")
