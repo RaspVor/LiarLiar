@@ -299,24 +299,32 @@ choice_made =one_turn_IA_guess(counter_turnZ.counter, (counter_turnZ.winner+1)%l
 
 
 
+np.where(Player.players_list[0].cave[1] > 3)[0]
+
+def check_ifloser_die(turn_number, loser_num, players_list):
+
+    if np.where(players_list[loser_num].cave[1] > 3)[0].size == 0:
+        
+        print("empty")
+    else :
+        print("not empty")
 
 
+check_ifloser_die(counter_turnZ.counter, who_wonZ.return_loser(), Player.players_list)
+
+np.where(Player.players_list[0].cave[1] > 3)[0].size
 
 
+zz = Player.players_list.pop(0)
 
 
+Player.players_list[0].cave[1]
+Player.players_list[1].cave[1]
 
+zz[1].cave[1]
 
-
-
-
-
-
-
-
-
-
-
+len(Player.players_list)
+len(Player.players_list)
  
 def one_turn_human_picked(turn_number, past_winner):
     sg.ChangeLookAndFeel('DarkAmber')
