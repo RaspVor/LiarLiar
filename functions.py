@@ -242,3 +242,22 @@ def one_turn_IA_guess(turn_number, after_winner):
     window.close()
     
     return(choiceZ)
+
+
+def show_winner(turn_number, text):
+    sg.ChangeLookAndFeel('DarkAmber')
+    # All the stuff inside the window.
+    
+    layout = [  [sg.Text('Round ' + str(turn_number))],
+                [sg.Text(text)],
+                [sg.Button('Ok'), sg.Button('Cancel')] ]
+
+    # Create the Window
+    window = sg.Window('Summoners! Rise Up', layout)
+    # Event Loop to process "events" and get the "values" of the inputs
+    while True:
+        event, values = window.read()
+        if event in (None, 'Cancel', 'Ok'):   # if user closes window or clicks cancel
+            break
+    
+    window.close()
