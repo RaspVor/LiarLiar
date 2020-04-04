@@ -12,12 +12,66 @@ for i in range(nb_players.nb):
 
 nb_players.hmp()
 
+np.array[1:nb_players.nb]
+np.arange(1,nb_players.nb+1)
+
+random.randint(1,len(Player.players_list))-1
+np.arange(0,4)
+
+print(myMatrix)
+mkTkinter
+
+nb_players.hmp()nb_players.listing(loser_num)
+import threading
+t = threading.Thread() 
+t.setDaemon(True) 
+t.start()
+
+nb_players.listing.pop(who_wonZ.return_loser())
+
+arr = nb_players.listing
+
+nb_players.listing.remove(0)
+nb_players.nb
+
+np.delete(nb_players.listing, np.where(nb_players.listing == 0))
 
 
-myMatrix.head()
+aa = nb_players(4,np.arange(0,4))
+bb = nb_players(2,np.arange(0,2))
+aa.listing
+bb.listing
+
+class A:
+   
+   def __init__(self, message="class message"):
+        self.message=message
+   
+   @classmethod
+   def cfoo(cls):
+      print(cls.message)
+
+   def foo(self, msg):
+      self.message = msg
+      print(self.message)
+
+   def __str__(self):
+      return self.message
+
+a = A()
+a.foo('instance call')
+
+b = A()
 
 
-nb_players.hmp()
+
+
+
+
+
+
+
+
 
 
 class game_turn:
