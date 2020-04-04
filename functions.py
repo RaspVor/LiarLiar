@@ -293,4 +293,5 @@ def ifloser_die(turn_number, winner_num, loser_num, players_list, nb_players):
         new_starter = np.where(np.delete(nb_players, np.where(nb_players == loser_num)) == winner_num)[0][0]
         
         return(np.arange(0,len(nb_players)-1), new_starter)
-   
+    else:
+        return(np.arange(0,len(nb_players)), new_starter)
