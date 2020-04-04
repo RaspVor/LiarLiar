@@ -137,3 +137,9 @@ class who_won:
             print(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
         else:
             print(str(self.players_list[self.player_number].name) + " WON!!!")
+
+    def showwhowon(self):
+        if ((self.picker_cards == self.picker_call) and self.caller_choose == "TRUE") or ((self.picker_cards != self.picker_call) and self.caller_choose == "FALSE"):
+            return(str(self.players_list[(self.player_number+1)%len(self.players_list)].name) + " WON!!!")
+        else:
+            return(str(self.players_list[self.player_number].name) + " WON!!!")
