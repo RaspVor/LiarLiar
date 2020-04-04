@@ -261,3 +261,30 @@ def show_winner(turn_number, text):
             break
     
     window.close()
+    
+    
+def ifloser_die(turn_number, loser_num, players_list):
+    
+    if (np.where(players_list[loser_num].cave[1] > 3)[0].size != 0) or (np.where(players_list[loser_num].cards[1] < 1)[0].size == 8):
+        
+        sg.ChangeLookAndFeel('DarkAmber')
+        # All the stuff inside the window.
+        
+        IAchoice =  np.random.choice(["TRUE", "FALSE"],1)[0]
+        
+        
+        layout = [  [sg.Text('Round ' + str(turn_number))],
+                    [sg.Text( players_list[loser_num].name + ' is eliminated! Go to hell!!')],
+                    [sg.Button('Ok'), sg.Button('Cancel')] ]
+    
+        # Create the Window
+        window = sg.Window('Summoners! Rise Up', layout)
+        # Event Loop to process "events" and get the "values" of the inputs
+        while True:
+            event, values = window.read()
+            if event in (None, 'Cancel','Ok'):   # if user closes window or clicks cancel
+                break
+        
+        window.close()
+        
+        players_list.pop(loser_num)
