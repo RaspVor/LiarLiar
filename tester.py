@@ -301,13 +301,40 @@ choice_made =one_turn_IA_guess(counter_turnZ.counter, (counter_turnZ.winner+1)%l
 
 np.where(Player.players_list[0].cave[1] > 3)[0]
 
-def check_ifloser_die(turn_number, loser_num, players_list):
 
-    if np.where(players_list[loser_num].cave[1] > 3)[0].size == 0:
+
+
+
+def ifloser_die(turn_number, loser_num, players_list):
+    
+    if np.where(players_list[loser_num].cave[1] > 3)[0].size != 0:
         
-        print("empty")
-    else :
-        print("not empty")
+        sg.ChangeLookAndFeel('DarkAmber')
+        # All the stuff inside the window.
+        
+        IAchoice =  np.random.choice(["TRUE", "FALSE"],1)[0]
+        
+        
+        layout = [  [sg.Text('Round ' + str(turn_number))],
+                    [sg.Text( players_list[loser_num].name + ' is eliminated! Go to hell!!')],
+                    [sg.Button('Ok'), sg.Button('Cancel')] ]
+    
+        # Create the Window
+        window = sg.Window('Summoners! Rise Up', layout)
+        # Event Loop to process "events" and get the "values" of the inputs
+        while True:
+            event, values = window.read()
+            if event in (None, 'Cancel','Ok'):   # if user closes window or clicks cancel
+                break
+        
+        window.close()
+        
+        players_list.pop(loser_num)
+    
+np.where(Player.players_list[0].cards[1] < 1)[0].size
+
+
+
 
 
 check_ifloser_die(counter_turnZ.counter, who_wonZ.return_loser(), Player.players_list)
