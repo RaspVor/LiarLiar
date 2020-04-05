@@ -58,7 +58,10 @@ def WhoAreYou(num=int):
         break
     
     window.close()
-    
+    layout = None
+    window = None
+    gc.collect()
+        
     Player(values[0], player_statut_official, num)
     
     
@@ -89,6 +92,9 @@ def one_turn_human_announce(turn_number, past_winner):
             break
     
     window.close()
+    layout = None
+    window = None
+    gc.collect()
     
     return(card_playedZ)
 
@@ -116,6 +122,9 @@ def one_turn_IA_announce(turn_number, past_winner):
             break
     
     window.close()
+    layout = None
+    window = None
+    gc.collect()
     
     return(card_playedZ)
 
@@ -126,7 +135,7 @@ def one_turn_human_picked(turn_number, past_winner):
     sg.ChangeLookAndFeel('DarkAmber')
     # All the stuff inside the window.
     
-    radio_choices = Player.players_list[counter_turnZ.winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]]
+    radio_choices = Player.players_list[past_winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]]
     
     
     layout = [  [sg.Text('Round ' + str(turn_number))],
@@ -149,35 +158,41 @@ def one_turn_human_picked(turn_number, past_winner):
             break
     
     window.close()
+    layout = None
+    window = None
+    gc.collect()
     
     return(card_playedZ)
 
 
 
 def one_turn_IA_picked(turn_number, past_winner):
-    sg.ChangeLookAndFeel('DarkAmber')
+    #sg.ChangeLookAndFeel('DarkAmber')
     # All the stuff inside the window.
     
-    IAchoice = np.random.choice(Player.players_list[counter_turnZ.winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]],1)[0]
+    IAchoice = np.random.choice(Player.players_list[past_winner].cards[0][np.where(Player.players_list[past_winner].cards[1] > 0 )[0]],1)[0]
     
-    layout = [  [sg.Text('Round ' + str(turn_number))],
-                [sg.Text( 'Me, ' + Player.players_list[past_winner].name + '! I pick ' + IAchoice)],
-                [sg.Button('Ok'), sg.Button('Cancel')] ]
+    #layout = [  [sg.Text('Round ' + str(turn_number))],
+    #            [sg.Text( 'Me, ' + Player.players_list[past_winner].name + '! I pick ' + IAchoice)],
+    #            [sg.Button('Ok'), sg.Button('Cancel')] ]
 
     # Create the Window
-    window = sg.Window('Summoners! Rise Up', layout)
+    #window = sg.Window('Summoners! Rise Up', layout)
     # Event Loop to process "events" and get the "values" of the inputs
-    while True:
-        event, values = window.read()
-        if event in (None, 'Cancel'):   # if user closes window or clicks cancel
-            break
-        if event in ('Ok'):   # if user closes window or clicks cancel
+    #while True:
+    #    event, values = window.read()
+    #    if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+    #        break
+    #    if event in ('Ok'):   # if user closes window or clicks cancel
         
-            card_playedZ = IAchoice
-            break
+    card_playedZ = IAchoice
+    #        break
     
-    window.close()
-    
+    #window.close()
+    #layout = None
+    #window = None
+    #gc.collect()
+        
     return(card_playedZ)    
 
 
@@ -211,7 +226,10 @@ def one_turn_human_guess(turn_number, after_winner):
             break
     
     window.close()
-    
+    layout = None
+    window = None
+    gc.collect()
+        
     return(choiceZ)
 
 
@@ -240,7 +258,10 @@ def one_turn_IA_guess(turn_number, after_winner):
             break
     
     window.close()
-    
+    layout = None
+    window = None
+    gc.collect()
+        
     return(choiceZ)
 
 
@@ -261,7 +282,9 @@ def show_winner(turn_number, text):
             break
     
     window.close()
-    
+    layout = None
+    window = None
+    gc.collect()
     
 def ifloser_die(turn_number, winner_num, loser_num, players_list, nb_players):
     new_starter = loser_num
@@ -287,6 +310,9 @@ def ifloser_die(turn_number, winner_num, loser_num, players_list, nb_players):
                 break
         
         window.close()
+        layout = None
+        window = None
+        gc.collect()
         
         players_list.pop(loser_num)
         
