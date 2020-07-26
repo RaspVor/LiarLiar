@@ -1,8 +1,14 @@
 # LiarLiar
-Create an IA that can play a game named LiarLiar
+The objectif of the project is to create the game LiarLiar. The goal of the game is to guess if your oponant is lying or not.
 
-The goal of the game is to guess if your oponant is lying or not. He choose one of his card and tell what card it is. It could be the truth or a lie. You make a bet and then if you win your oponant plays again or if you loose it's your turn to choose a card. 
+The rules are quite simple:
 
-The one who loose during a round collect the card chosen by the one who choosed the card. The loser keep it and put it on the table. If you have at the end 4 cards which are the same you lose.
+- Each player receive the same number of cards.
+- For the first round a player is asked to choose a card. he can then tell the true name of the card or a wrong name. The other player has to guess if what is said is true or false. the player who lose take the card on put it on the table, front of him and visible for everyone.
+- The fist player who has 4 similar cards on the table or don't have any more cards in his hand lose.
 
-That is quite simple!
+The following code allow you to play  again the computer which randomly tell the truth or a lie and randomly guess if your call.
+
+The final objectif or this code is to train a reinforcement model in order to train an 'IA" to play this game. 
+
+First! let's start with a code juste to play the game!
